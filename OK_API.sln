@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.10.35013.160
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OK_API", "OK_API\OK_API.csproj", "{9E07A23F-2F78-4F8F-801E-F93DEA83E1D4}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{9E07A23F-2F78-4F8F-801E-F93DEA83E1D4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9E07A23F-2F78-4F8F-801E-F93DEA83E1D4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9E07A23F-2F78-4F8F-801E-F93DEA83E1D4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9E07A23F-2F78-4F8F-801E-F93DEA83E1D4}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {1899E149-E440-433F-800A-CC53DA5139AD}
+	EndGlobalSection
+EndGlobal
