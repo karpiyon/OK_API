@@ -7,37 +7,36 @@ namespace OK_API
 {
     public class OpenKneeboardAPI
     {
-        private static string DllPath { get; set; } = @"C:\Path\To\OpenKneeboard_CAPI64.dll"; // Replace with actual path
+        private static string DllPath { get; set; } = @"C:\Path\To\OpenKneeboard_CAPI32.dll"; // Replace with actual path
 
         static OpenKneeboardAPI()
         {
             var OK_exePath = @"c:\Program Files\OpenKneeboard\bin\";
-            var OpenKneeboard_CAPI64 = $@"{OK_exePath}\OpenKneeboard_CAPI32.dll";
-            if (!File.Exists(OpenKneeboard_CAPI64))
+            var OpenKneeboard_CAPI = $@"{OK_exePath}\OpenKneeboard_CAPI32.dll";
+            if (!File.Exists(OpenKneeboard_CAPI))
             {
-                Console.WriteLine($"OpenKneeboard could not be found under: {OpenKneeboard_CAPI64}");
+                Console.WriteLine($"OpenKneeboard could not be found under: {OpenKneeboard_CAPI}");
                 return;
             }
             OPENKNEEBOARD_CAPI = (OPENKNEEBOARD_CAPIDelegate)
                 FunctionLoader.LoadFunction<OPENKNEEBOARD_CAPIDelegate>(
-                    OpenKneeboard_CAPI64, "OpenKneeboard_send_utf8");
+                    OpenKneeboard_CAPI, "OpenKneeboard_send_utf8");
         }
         public delegate void OPENKNEEBOARD_CAPIDelegate(
             [MarshalAs(UnmanagedType.LPArray, SizeParamIndex = 1)] byte[] messageName,
-            int messageNameByteCount,
+            ulong messageNameByteCount,
             [MarshalAs(UnmanagedType.LPArray, SizeParamIndex = 3)] byte[] messageValue,
-            int messageValueByteCount
+            ulong messageValueByteCount
         );
 
         static private OPENKNEEBOARD_CAPIDelegate OPENKNEEBOARD_CAPI;
 
-        public void sendCommand(string cmdName, string cmdVar)
+        public void SendCommand(string cmdName, string cmdVar)
         {
-            // Convert strings to UTF-8 byte arrays directly
-            var cmdNameU8 = Encoding.UTF8.GetBytes(cmdName);
-            var cmdVarU8 = Encoding.UTF8.GetBytes(cmdVar);
-            // No need to convert back to strings, use the byte arrays directly
-            OPENKNEEBOARD_CAPI(cmdNameU8, cmdNameU8.Length, cmdVarU8, cmdVarU8.Length);
+            var utf8 = Encoding.UTF8;
+            var messageName = utf8.GetBytes(cmdName);
+            var messageValue = utf8.GetBytes(cmdVar);
+            OPENKNEEBOARD_CAPI(messageName, (ulong)messageName.Length, messageValue, (ulong)messageValue.Length);
         }
     }
 

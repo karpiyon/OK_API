@@ -11,7 +11,7 @@ namespace OK_API
         static void Main(string[] args)
         {
             var ok = new OpenKneeboardAPI();
-            ok.sendCommand("NEXT_TAB", "");
+            ok.SendCommand("NEXT_TAB", "NEXT_TAB");
         }
     }
 }
